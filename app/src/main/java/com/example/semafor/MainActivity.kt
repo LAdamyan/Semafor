@@ -45,9 +45,12 @@ class MainActivity : Activity() {
         timer = Timer()
         timer?.schedule(object : TimerTask() {
             override fun run() {
-                imSemafor?.setImageResource(imageArray[counter])
-                counter++
-                if (counter == 3) counter = 0
+                runOnUiThread {
+                    imSemafor?.setImageResource(imageArray[counter])
+                    counter++
+                    if (counter == 3) counter = 0
+                }
+
             }
 
         }, 0, 1000)
